@@ -1,4 +1,5 @@
 const express = require('express');
+const authRoutes = require('../routes/auth/authRouter.js');
 
 const configMiddleware = require('./middleware');
 
@@ -8,6 +9,8 @@ const server = express();
 configMiddleware(server);
 
 //routes:
+server.use('/auth', authRoutes);
+
 server.get('/', (req, res) => {
   res.status(200).json({ message: 'sanity check passed!' });
 });
