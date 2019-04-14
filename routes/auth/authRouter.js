@@ -1,26 +1,45 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 
-const Users = require('../../models/userModel');
+const tokenService = require('./tokenService');
+const Auth = require('../../models/userModel');
 
 router.post('/register', async (req, res) => {
-  const user = req.body;
+  let user = req.body;
 
   if (!user.username || !user.password) {
-    res
+    return res
       .status(406)
-      .json({ message: 'Must include a username and passowrd to register' });
+      .json({ message: 'Must include a username and password to register' });
   }
 
-  const hash = bcrypt.hashSync(user.password, 11);
+  const hash = bcrypt.hashSync(user.password, 10);
   user.password = hash;
-
   try {
-    const added = await Users.add(user);
-    if (added) {
-      res.status(201).json(added); //successful registration returns user info
+    const register = await Auth.add(user);
+    if (register) {
+      res.status(201).json(register);
     } else {
-      res.status(405).json({ error: 'User already registered' });
+      res.status(400).json({ message: 'user already registered' });
+    }
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+router.post('/login', async (req, res) => {
+  let { username, password } = req.body;
+  try {
+    const user = await Auth.findBy({ username }).first();
+    if (user && bcrypt.compareSync(password, user.password)) {
+      const token = tokenService.generateToken(user);
+      res.status(202).json({
+        message: `welcome ${user.username}`,
+        token,
+        roles: token.roles,
+      });
+    } else {
+      res.status(401).json({ message: 'Invalid Credentials' });
     }
   } catch (error) {
     res.status(500).json({ error: 'server error' });
