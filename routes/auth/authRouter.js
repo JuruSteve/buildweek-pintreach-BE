@@ -36,20 +36,23 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   let { username, password } = req.body;
+  console.log(req.body);
   try {
-    const user = await Auth.findBy({ username }).first();
+    const user = await Auth.findBy(username);
+    console.log('login');
     if (user && bcrypt.compareSync(password, user.password)) {
       const token = tokenService.generateToken(user);
       res.status(202).json({
         message: `welcome ${user.username}`,
         token,
-        roles: token.roles,
       });
     } else {
-      res.status(401).json({ message: 'Invalid Credentials' });
+      res.status(401).json({ error: 'Invalid Credentials. Please try again' });
     }
   } catch (error) {
-    res.status(500).json({ error: 'server error' });
+    res
+      .status(500)
+      .json({ error: 'server error, please try logging in again' });
   }
 });
 
