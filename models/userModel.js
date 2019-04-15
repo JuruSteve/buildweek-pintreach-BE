@@ -2,8 +2,13 @@ const db = require('../data/dbConfig.js');
 
 module.exports = {
   add,
+  findBy,
 };
 
 function add() {
-  return null;
+  return;
+}
+
+function findBy(filter) {
+  return;
 }
