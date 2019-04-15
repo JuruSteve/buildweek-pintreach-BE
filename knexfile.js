@@ -42,8 +42,8 @@ module.exports = {
     useNullAsDefault: true,
     connection: productionDbConnection,
     pool: {
-      afterCreate: (conn, done) => {
-        conn.run('PRAGMA foreign_keys = ON', done);
+      // afterCreate: (conn, done) => {
+      //   conn.run('PRAGMA foreign_keys = ON', done);
       },
     },
     migrations: {
