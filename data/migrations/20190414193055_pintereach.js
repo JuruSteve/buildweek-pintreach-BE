@@ -12,7 +12,7 @@ exports.up = function(knex) {
       .string('email', 128)
       .notNullable()
       .unique();
-    users.string('img', 128);
+    users.string('img', 300);
   });
 };
 

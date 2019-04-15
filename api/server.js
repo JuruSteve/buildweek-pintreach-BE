@@ -17,7 +17,7 @@ server.get('/users', async (req, res) => {
     const users = await db('users');
     res.status(200).json(users);
   } catch (error) {
-    res.status(500).json({ erro: 'database error' });
+    res.status(500).json({ error: 'database error' });
   }
 });
 
