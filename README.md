@@ -32,6 +32,7 @@
 
 - requires name, username, password, email and optional img
 - username and email must be unique, will fail if user is already registered
+- example registration:
 
 ```
 {
@@ -46,6 +47,7 @@
 ### POST /auth/login
 
 - requires username and password
+- exaple login:
 
 ```
 {
@@ -55,6 +57,7 @@
 ```
 
 - returns message and JWT upon successful log in
+- login response example:
 
 ```
 {
