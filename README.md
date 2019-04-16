@@ -41,3 +41,15 @@
 }
 ```
 
+### POST /articles
+* adds article to database
+* title, url, and user_id required, optional img
+```
+{
+	"title":"Emergence of the geometric phase from quantum measurement back-action",
+	"url": "https://www.nature.com/articles/s41567-019-0482-z",
+	"user_id": 4
+}
+```
+* returns article object with id to client upon successful POST
+
