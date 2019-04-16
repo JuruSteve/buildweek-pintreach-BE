@@ -1,5 +1,7 @@
 const express = require('express');
 const authRoutes = require('../routes/auth/authRouter.js');
+const usersRoutes = require('../routes/users/usersRoutes.js');
+
 const db = require('../data/dbConfig.js');
 
 const configMiddleware = require('./middleware');
@@ -11,6 +13,7 @@ configMiddleware(server);
 
 //routes:
 server.use('/auth', authRoutes);
+server.use('/users', usersRoutes);
 
 server.get('/users', async (req, res) => {
   try {
