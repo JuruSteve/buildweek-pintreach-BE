@@ -37,4 +37,20 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+router.delete('/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const deleted = await db('articles')
+      .where({ id })
+      .del();
+    if (deleted) {
+      res.status(200).json({ message: 'article deleted' });
+    } else {
+      res.status(404).json({ message: 'article does not exist' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'database error' });
+  }
+});
+
 module.exports = router;

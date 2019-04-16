@@ -24,6 +24,10 @@
 
 - returns single article by id
 
+### DELETE /articles/:id
+
+- deletes single article by id
+
 ### POST /auth/register
 
 - requires name, username, password, email and optional img
