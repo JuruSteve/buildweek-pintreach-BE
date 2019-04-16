@@ -30,7 +30,7 @@
 }
 ```
 
-* reurns message and JWT upon successful log in
+* returns message and JWT upon successful log in
 ```
 {
   "message": "welcome janeDoe",
