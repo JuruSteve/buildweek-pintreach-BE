@@ -7,6 +7,9 @@
 ### GET /users
 * returns array of users, used for testing purposes
 
+### GET /aricles
+* returns array of all articles in database
+
 ### POST /auth/register
 * requires name, username, password, email and optional img
 * username and email must be unique, will fail if user is already registered
