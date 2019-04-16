@@ -7,6 +7,15 @@
 ### GET /users
 * returns array of users, used for testing purposes
 
+### GET /users/:id
+* returns single user by id
+
+### GET /aricles
+* returns array of all articles in database
+
+### GET /articles/:id
+* returns single article by id
+
 ### POST /auth/register
 * requires name, username, password, email and optional img
 * username and email must be unique, will fail if user is already registered
@@ -37,4 +46,16 @@
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoyLCJ1c2VybmFtZSI6ImphbmVEb2UiLCJyb2xlcyI6WyJVc2VyIl0sImlhdCI6MTU1NTM4MDQxMywiZXhwIjoxNTU1NDY2ODEzfQ.P6bGrwC_4uNu9aKK2_C2YWcs0EdChOJIGeQ6EIje5no"
 }
 ```
+
+### POST /articles
+* adds article to database
+* title, url, and user_id required, optional img
+```
+{
+	"title":"Emergence of the geometric phase from quantum measurement back-action",
+	"url": "https://www.nature.com/articles/s41567-019-0482-z",
+	"user_id": 4
+}
+```
+* returns article object with id to client upon successful POST
 
