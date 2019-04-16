@@ -7,8 +7,14 @@
 ### GET /users
 * returns array of users, used for testing purposes
 
+### GET /users/:id
+* returns single user by id
+
 ### GET /aricles
 * returns array of all articles in database
+
+### GET /articles/:id
+* returns single article by id
 
 ### POST /auth/register
 * requires name, username, password, email and optional img
