@@ -98,7 +98,7 @@
 | email    | string, required (128 characters max) |
 | password | string, required (128 characters max) |
 | name     | string, required (128 characters max) |
-| img      | string, optional (300 characters max) |
+| type      | string, optional (300 characters max) |
 
 # Articles:
 
