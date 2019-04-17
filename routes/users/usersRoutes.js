@@ -34,7 +34,7 @@ router.get('/:id/articles', restricted, async (req, res) => {
     const joined = await db('articles')
       .join('users', 'articles.user_id', '=', 'users.id')
       .select(
-        'users.id',
+        'articles.id',
         'articles.title',
         'articles.url',
         'articles.img',
