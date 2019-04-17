@@ -43,7 +43,7 @@ exports.seed = function(knex) {
     },
     {
       title:
-        'https://research.stlouisfed.org/publications/review/2019/04/15/the-real-term-premium-in-a-stationary-economy-with-segmented-asset-markets/',
+        'The Real Term Premium in a Stationary Economy with Segmented Asset Markets',
       url:
         'https://research.stlouisfed.org/publications/review/2019/04/15/the-real-term-premium-in-a-stationary-economy-with-segmented-asset-markets/',
       user_id: 3,
