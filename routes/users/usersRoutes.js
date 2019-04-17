@@ -15,7 +15,6 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
-  console.log(id);
   try {
     const users = await Users.findById(id);
     if (users) {
@@ -25,6 +24,24 @@ router.get('/:id', async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({ error: 'database error' });
+  }
+});
+
+router.get('/:id/articles', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const joined = await db('articles')
+      .join('users', 'articles.user_id', '=', 'users.id')
+      .select(
+        'articles.title',
+        'articles.url',
+        'articles.img',
+        'articles.user_id'
+      )
+      .where({ user_id: id });
+    res.status(200).json(joined);
+  } catch (error) {
+    res.status(500).json({ error });
   }
 });
 
