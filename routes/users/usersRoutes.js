@@ -37,7 +37,7 @@ router.get('/:id/articles', restricted, async (req, res) => {
         'articles.id',
         'articles.title',
         'articles.url',
-        'articles.img',
+        'articles.type',
         'articles.user_id'
       )
       .where({ user_id: id });
