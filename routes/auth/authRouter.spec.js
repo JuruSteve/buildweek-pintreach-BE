@@ -67,3 +67,26 @@ describe('register tests', () => {
     expect(res.status).toBe(406);
   });
 });
+
+describe('login tests', () => {
+  beforeEach(async () => {
+    await db('users').truncate();
+  });
+
+  it('login should fail with 401 invalid creds', async () => {
+    await request(server)
+      .post('/auth/register')
+      .send({
+        username: 'KobeBryant',
+        email: 'kobebryant@fakemail.com',
+        password: 'test',
+        name: 'Kobe Bryant',
+      });
+
+    const login = await request(server)
+      .post('/auth/login')
+      .send({ username: 'KobeBryant', password: 'Lakers' });
+    expect(login.status).toBe(401);
+    expect(login.body.error).toEqual('Invalid Credentials. Please try again');
+  });
+});
