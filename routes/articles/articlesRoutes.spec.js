@@ -38,4 +38,9 @@ describe('article tests', () => {
       .set({ authorization: login.body.token });
     expect(deleteArticle.body.message).toEqual('article deleted');
   });
+
+  it('should reject accesse to articles if no token set to headers', async () => {
+    const articles = await request(server).get('/articles');
+    expect(articles.body.message).toBe('you shall not pass! (no token)');
+  });
 });
