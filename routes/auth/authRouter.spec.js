@@ -31,4 +31,39 @@ describe('register tests', () => {
     expect(login.body.id).toEqual(1);
     expect(login.body.token).toBeTruthy();
   });
+
+  it('should not allow duplicate registration', async () => {
+    await request(server)
+      .post('/auth/register')
+      .send({
+        username: 'KobeBryant',
+        email: 'kobebryant@fakemail.com',
+        password: 'test',
+        name: 'Kobe Bryant',
+      });
+    const res = await request(server)
+      .post('/auth/register')
+      .send({
+        username: 'KobeBryant',
+        email: 'kobebryant@fakemail.com',
+        password: 'test',
+        name: 'Kobe Bryant',
+      });
+
+    expect(res.status).toBe(500);
+    expect(res.body.errno).toBe(19); //SQLITE error 19 for duplicate of a unique column
+  });
+
+  it('should throw error status 406 if registration fields are incomplete ', async () => {
+    const res = await request(server)
+      .post('/auth/register')
+      .send({
+        username: 'KobeBryant',
+        // email: 'kobebryant@fakemail.com',      commented out to simulate a missing email field
+        password: 'test',
+        name: 'Kobe Bryant',
+      });
+
+    expect(res.status).toBe(406);
+  });
 });
