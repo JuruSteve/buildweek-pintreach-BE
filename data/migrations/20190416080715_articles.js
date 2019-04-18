@@ -10,7 +10,7 @@ exports.up = function(knex) {
       .string('url', 300)
       .notNullable()
       .unique();
-    tbl.string('img', 300);
+    tbl.string('type', 300);
     tbl
       .integer('user_id')
       .unsigned()

@@ -86,3 +86,25 @@
 ```
 
 - returns article object with id to client upon successful POST
+
+## Table Details
+
+# Users:
+
+| column   | type                                  |
+| -------- | ------------------------------------- |
+| id       | primary key, auto-increments          |
+| username | string,required (128 characters max)  |
+| email    | string, required (128 characters max) |
+| password | string, required (128 characters max) |
+| name     | string, required (128 characters max) |
+| type      | string, optional (300 characters max) |
+
+# Articles:
+
+| column name | type                                       |
+| ----------- | ------------------------------------------ |
+| id          | primary key, auto-increments               |
+| title       | string,required (300 characters max)       |
+| url         | string, required (300 characters max)      |
+| user_id     | integer, FK references id on 'users' table |

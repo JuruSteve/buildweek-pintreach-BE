@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const Users = require('../../models/userModel');
 
+const restricted = require('../../commonMiddleware/restricted');
 const db = require('../../data/dbConfig');
 
-router.get('/', async (req, res) => {
+router.get('/', restricted, async (req, res) => {
   try {
     const users = await db('users');
     res.status(200).json(users);
@@ -13,7 +14,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', restricted, async (req, res) => {
   const { id } = req.params;
   try {
     const users = await Users.findById(id);
@@ -27,15 +28,16 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.get('/:id/articles', async (req, res) => {
+router.get('/:id/articles', restricted, async (req, res) => {
   const { id } = req.params;
   try {
     const joined = await db('articles')
       .join('users', 'articles.user_id', '=', 'users.id')
       .select(
+        'articles.id',
         'articles.title',
         'articles.url',
-        'articles.img',
+        'articles.type',
         'articles.user_id'
       )
       .where({ user_id: id });

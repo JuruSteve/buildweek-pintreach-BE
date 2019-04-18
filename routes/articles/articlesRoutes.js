@@ -1,9 +1,10 @@
 const db = require('../../data/dbConfig');
 const Articles = require('../../models/articlesModel');
+const restricted = require('../../commonMiddleware/restricted');
 
 const router = require('express').Router();
 
-router.get('/', async (req, res) => {
+router.get('/', restricted, async (req, res) => {
   try {
     const articles = await db('articles');
     res.status(200).json(articles);
@@ -12,7 +13,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', restricted, async (req, res) => {
   const article = req.body;
   try {
     const added = await Articles.add(article);
@@ -22,7 +23,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', restricted, async (req, res) => {
   const { id } = req.params;
   try {
     const article = await Articles.findById(id);
@@ -36,7 +37,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', restricted, async (req, res) => {
   const { id } = req.params;
   try {
     const deleted = await db('articles')
@@ -52,7 +53,7 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', restricted, async (req, res) => {
   const { id } = req.params;
   const edits = req.body;
   try {

@@ -34,12 +34,12 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
   let { username, password } = req.body;
   try {
-    console.log('here');
     const user = await Auth.findBy(username);
     if (user && bcrypt.compareSync(password, user.password)) {
       const token = tokenService.generateToken(user);
       res.status(202).json({
         message: `welcome ${user.username}`,
+        id: user.id,
         token,
       });
     } else {
