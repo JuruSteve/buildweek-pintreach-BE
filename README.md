@@ -2,6 +2,8 @@
 
 ## Base URL: https://pintereach-buildweek.herokuapp.com/
 
+---
+
 ## Endpoints
 
 ### GET /users
@@ -87,6 +89,8 @@
 
 - returns article object with id to client upon successful POST
 
+---
+
 ## Table Details
 
 # Users:
@@ -98,7 +102,7 @@
 | email    | string, required (128 characters max) |
 | password | string, required (128 characters max) |
 | name     | string, required (128 characters max) |
-| type      | string, optional (300 characters max) |
+| type     | string, optional (300 characters max) |
 
 # Articles:
 
@@ -108,3 +112,12 @@
 | title       | string,required (300 characters max)       |
 | url         | string, required (300 characters max)      |
 | user_id     | integer, FK references id on 'users' table |
+
+---
+
+## Running Locally:
+
+1. clone repository: `git clone https://github.com/pintreach/buildweek-pintreach-BE.git`
+2. Move into newly created directory: `cd buildweek-pintreach-BE`
+3. Run yarn to install dependencies: `yarn install`
+4. Start server: `yarn server`
