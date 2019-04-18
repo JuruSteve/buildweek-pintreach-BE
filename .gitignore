@@ -1,3 +1,4 @@
 node_modules
 data/pintereach.db3
 data/test.db3
+.env
