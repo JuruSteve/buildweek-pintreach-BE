@@ -16,4 +16,6 @@ describe('server.js', () => {
       expect(res.body).toEqual({ message: 'sanity check passed!' });
     });
   });
+
+  describe('', () => {});
 });
