@@ -31,7 +31,7 @@
 ### PUT /articles/:id
 
 - updates article with the updated information passed on request body.
-- will update with any of the following: title,url, img or user_id
+- will update with any of the following: title,url, type or user_id
 - returns entire edited object upon successful update
 
 ### POST /auth/register
